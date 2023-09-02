@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Mogra&family=Montserrat&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  color: white;
+  background: linear-gradient(45deg, #4158D0, #C850C0, #FFCC70);
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.logo {
+  font-family: 'Mogra', cursive;
+  font-weight: bold;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15rem;
+}
+
+.content_title {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.content_description {
+  font-weight: 400;
+  font-size: 20px;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form .form_input {
+  max-width: 500px;
+  min-width: 300px;
+  height: 50px;
+  background: white;
+  outline: none;
+  border: none;
+  text-indent: 10px;
+  font-size: 16px;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+}
+
+.form .form_button, .download_btn {
+  width: 150px;
+  height: 50px;
+  background: #4158B0;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 3rem;
+  border-radius: 3px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 50px;
+  text-decoration: none;
+}
+
+.disabled {
+  opacity: 0.75;
+}
+
+.download_btn {
+  background: #0e9d42;
+
+}
+
+.download_quote {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.video_title {
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .content {
+    margin-top: 10rem;
+  }
+
+  .form_input {
+    width: 100%;
+  }
+
+  .reset_button, .download_btn, .form_button {
+    min-width: 100%;
+  }
+
+  .content_title {
+    font-size: 35px;
+    margin-bottom: 16px;
+  }
+}
