@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  row-gap: 16px;
+}
+
+.video {
+  flex-basis: 50%;
+  .thumbnail {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .title {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #000;
+
+    &:hover {
+      color: #c10841;
+    }
+  }
+}
+
+.control{
+    flex-basis: 50%;
+}

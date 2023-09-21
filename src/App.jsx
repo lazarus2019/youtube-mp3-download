@@ -1,12 +1,17 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { youtube_parser } from './utils/youtube_parser';
+import { searchVideoApi } from './apis/searchVideo.api';
+import { defaultSearchParams } from './const';
+import { MP3_API_KEY, SEARCH_API_KEY } from './apis/configs';
 
 function App() {
   const inputUrlRef = useRef();
   const [urlResult, setUrlResult] = useState(null);
   const [videoTitle, setVideoTitle] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+const key = import.meta.env.VITE_RAPID_API_KEY;
+  console.log({ MP3_API_KEY, SEARCH_API_KEY, key });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +53,13 @@ function App() {
     setIsLoading(false);
   };
 
+  const handleFetchingData = () => {
+    searchVideoApi.searchVideo({
+      ...defaultSearchParams,
+      keyword: 'juice wrld',
+    });
+  };
+
   return (
     <div className="app">
       <section className="content">
@@ -71,7 +83,7 @@ function App() {
               Làm mới
             </button>
           </div>
-   
+
           {urlResult ? (
             <>
               <p className="video_title">Tiêu đề video: {videoTitle}</p>
@@ -98,6 +110,10 @@ function App() {
             </button>
           )}
         </form>
+      </section>
+
+      <section>
+        <button onClick={handleFetchingData}>Test fetching data</button>
       </section>
     </div>
   );

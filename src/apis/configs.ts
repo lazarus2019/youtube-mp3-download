@@ -7,7 +7,7 @@ const hostURL = {
   toMP3YT: import.meta.env.VITE_YOUTUBE_MP3_HOST,
 };
 
-const API_KEY = import.meta.env.VITE_RAPID_API_KEY;
+const MP3_API_KEY = import.meta.env.VITE_YOUTUBE_MP3_API_KEY;
+const SEARCH_API_KEY = import.meta.env.VITE_YOUTUBE_SEARCH_API_KEY;
 
-
-export { baseURL, API_KEY, hostURL };
+export { baseURL, MP3_API_KEY, SEARCH_API_KEY, hostURL };

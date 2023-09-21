@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { API_KEY, baseURL, hostURL } from './configs';
+import { MP3_API_KEY, SEARCH_API_KEY, baseURL, hostURL } from './configs';
 
 const axiosToMP3Client = axios.create({
   baseURL: baseURL.toMP3YT,
   headers: {
-    'X-RapidAPI-Key': API_KEY,
+    'X-RapidAPI-Key': MP3_API_KEY,
     'X-RapidAPI-Host': hostURL.toMP3YT,
   },
 });
@@ -12,7 +12,7 @@ const axiosToMP3Client = axios.create({
 const axiosSearchClient = axios.create({
   baseURL: baseURL.searchVideoYT,
   headers: {
-    'X-RapidAPI-Key': API_KEY,
+    'X-RapidAPI-Key': SEARCH_API_KEY,
     'X-RapidAPI-Host': hostURL.toMP3YT,
   },
 });
