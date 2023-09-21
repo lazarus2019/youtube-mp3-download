@@ -10,7 +10,7 @@ function App() {
   const [urlResult, setUrlResult] = useState(null);
   const [videoTitle, setVideoTitle] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-const key = import.meta.env.VITE_RAPID_API_KEY;
+  const key = import.meta.env.VITE_RAPID_API_KEY;
   console.log({ MP3_API_KEY, SEARCH_API_KEY, key });
 
   const handleSubmit = (e) => {

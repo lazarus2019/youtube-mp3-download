@@ -1,4 +1,4 @@
-import { IListVideoReq, IListVideoRes } from '../types';
+import { AxiosResponse, IListVideoReq, IListVideoRes } from '../types';
 import { axiosSearchClient } from './axiosClient';
 
 const searchAPIPart = {
@@ -7,15 +7,14 @@ const searchAPIPart = {
 
 export const searchVideoApi = {
   async searchVideo(params: IListVideoReq) {
-    const response = await axiosSearchClient.get<IListVideoRes>(
+    const response = await axiosSearchClient.get<AxiosResponse<IListVideoRes>>(
       searchAPIPart.getList,
       {
-        ...params,
-        q: params.keyword,
+        params: { ...params, q: params.keyword },
       }
     );
 
-    console.log({ response });
-    return response;
+    console.log({ response: response.data });
+    return response.data;
   },
 };

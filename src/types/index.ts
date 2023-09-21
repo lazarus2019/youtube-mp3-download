@@ -1,4 +1,9 @@
-import { EOrderType } from '../const';
+export enum EOrderType {
+  DATE = 'date',
+  RELATE = 'relevance',
+  RATE = 'rating',
+  VIEW = 'views',
+}
 
 export interface IThumbnail {
   url: string;
@@ -31,10 +36,17 @@ export interface IListVideoRes {
   items: IVideoRes[];
 }
 
+export interface AxiosResponse<T> {
+  data: T[];
+  status: number;
+  statusText: string;
+}
+
 export interface IListVideoReq {
   keyword: string;
   regionCode?: string;
   maxResults?: number;
   order?: EOrderType;
   pageToken?: string;
+  part: string;
 }
