@@ -10,10 +10,10 @@ const axiosToMP3Client = axios.create({
 });
 
 const axiosSearchClient = axios.create({
-  baseURL: baseURL.searchVideoYT,
+  baseURL: 'https://youtube-v31.p.rapidapi.com',
   headers: {
-    'X-RapidAPI-Key': SEARCH_API_KEY,
-    'X-RapidAPI-Host': hostURL.toMP3YT,
+    'X-RapidAPI-Key': '9e7b682274msh39883b41d81747ap1d7ab0jsnac87b06d469a',
+    'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
   },
 });
 

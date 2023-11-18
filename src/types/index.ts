@@ -17,18 +17,28 @@ export interface IThumbnails {
   high: IThumbnail;
 }
 
-export interface IVideoRes {
+export interface IVideoDetail {
   id: string;
   publishedAt: string;
   channelId: string;
   title: string;
   description: string;
   channelTitle: string;
-  thumbnail: IThumbnails;
+  thumbnail: string;
 }
 
-export interface IVideoDetail extends Omit<IVideoRes, 'thumbnail'> {
-  thumbnail: string;
+export interface IVideoRes {
+  id: {
+    videoId: string;
+  };
+  snippet: {
+    channelId: string;
+    title: string;
+    description: string;
+    channelTitle: string;
+    publishedAt: string;
+    thumbnails: IThumbnails;
+  };
 }
 
 export interface IListVideoRes {

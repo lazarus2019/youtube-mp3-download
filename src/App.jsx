@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { youtube_parser } from './utils/youtube_parser';
-import { searchVideoApi } from './apis/searchVideo.api';
-import { defaultSearchParams } from './const';
 import { MP3_API_KEY, SEARCH_API_KEY } from './apis/configs';
+import { SearchPage } from './pages/SearchPage';
 
 function App() {
   const inputUrlRef = useRef();
@@ -51,13 +50,6 @@ function App() {
     inputUrlRef.current.value = '';
     setUrlResult(undefined);
     setIsLoading(false);
-  };
-
-  const handleFetchingData = () => {
-    searchVideoApi.searchVideo({
-      ...defaultSearchParams,
-      keyword: 'juice wrld',
-    });
   };
 
   return (
@@ -112,9 +104,7 @@ function App() {
         </form>
       </section>
 
-      <section>
-        <button onClick={handleFetchingData}>Test fetching data</button>
-      </section>
+      <SearchPage />
     </div>
   );
 }
