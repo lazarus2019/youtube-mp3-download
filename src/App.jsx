@@ -1,13 +1,20 @@
 import axios from 'axios';
-import { useRef, useState } from 'react';
-import { youtube_parser } from './utils/youtube_parser';
+import { useEffect, useRef, useState } from 'react';
+import { youtube_parser, getListVideoLinks } from './utils';
 import { searchVideoApi } from './apis/searchVideo.api';
-import { defaultSearchParams } from './const';
+import {
+  defaultSearchParams,
+  Y2Mate_linkDownload,
+  API_linkDownload,
+} from './const';
 import { MP3_API_KEY, SEARCH_API_KEY } from './apis/configs';
+import queryString from 'query-string';
 
 function App() {
   const inputUrlRef = useRef();
   const [urlResult, setUrlResult] = useState(null);
+  const [urlVideoResult, setUrlVideoResult] = useState(null);
+  const [linkDownloads, setLinkDownloads] = useState();
   const [videoTitle, setVideoTitle] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const key = import.meta.env.VITE_RAPID_API_KEY;
@@ -28,10 +35,22 @@ function App() {
       url: 'https://youtube-mp36.p.rapidapi.com/dl',
       params: { id: youtubeID },
       headers: {
-        'X-RapidAPI-Key': import.meta.env.VITE_RAPID_API_KEY,
+        'X-RapidAPI-Key': '9e7b682274msh39883b41d81747ap1d7ab0jsnac87b06d469a',
         'X-RapidAPI-Host': 'youtube-mp36.p.rapidapi.com',
       },
     };
+
+    const optionsVideoDownload = {
+      method: 'GET',
+      url: 'https://ytstream-download-youtube-videos.p.rapidapi.com/dl',
+      params: { id: youtubeID },
+      headers: {
+        'X-RapidAPI-Key': '9e7b682274msh39883b41d81747ap1d7ab0jsnac87b06d469a',
+        'X-RapidAPI-Host': 'ytstream-download-youtube-videos.p.rapidapi.com',
+      },
+    };
+
+    handleDownloadVideo(optionsVideoDownload);
 
     axios(options)
       .then((res) => {
@@ -39,8 +58,27 @@ function App() {
         setVideoTitle(res.data.title);
       })
       .catch((err) => {
+        const message = err.response.data.message;
         alert('Có lỗi xãy ra, xin thử lại');
-        console.log(err);
+        console.log(message, '2');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+  const handleDownloadVideo = (options) => {
+    axios(options)
+      .then((res) => {
+        const { formats, title } = res.data;
+        const downloadLinks = getListVideoLinks(formats, title);
+        console.log({ formats, downloadLinks });
+        setLinkDownloads(downloadLinks);
+        // setUrlVideoResult(res.data.link);
+      })
+      .catch((err) => {
+        // const message = err.response.data.message;
+        // alert('Có lỗi xãy ra, xin thử lại');
+        // console.log(message, '2');
       })
       .finally(() => {
         setIsLoading(false);
@@ -59,6 +97,14 @@ function App() {
       keyword: 'juice wrld',
     });
   };
+
+  // const y2MateURL = new URL(Y2Mate_linkDownload);
+  // const y2MateParams = queryString.parse(y2MateURL.search);
+
+  // const APIMateURL = new URL(API_linkDownload);
+  // const APIMateParams = queryString.parse(APIMateURL.search);
+
+  // console.log({ y2MateParams, APIMateParams });
 
   return (
     <div className="app">
@@ -84,21 +130,31 @@ function App() {
             </button>
           </div>
 
-          {urlResult ? (
+          {urlResult || urlVideoResult ? (
             <>
               <p className="video_title">Tiêu đề video: {videoTitle}</p>
 
               <p className="download_quote">
                 Chuyển đổi hoàn tất, hãy nhấn tải về
               </p>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={urlResult}
-                className="download_btn"
-              >
-                Tải về
-              </a>
+              <div className="btn_container">
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={urlResult}
+                  className="download_btn"
+                >
+                  Tải về âm thanh
+                </a>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={urlVideoResult}
+                  className="download_btn"
+                >
+                  Tải về video
+                </a>
+              </div>
             </>
           ) : (
             <button
@@ -112,9 +168,22 @@ function App() {
         </form>
       </section>
 
-      <section>
+      {linkDownloads &&
+        linkDownloads.map((link) => (
+          <a
+            key={link.itag}
+            target="_blank"
+            rel="noreferrer"
+            href={link.url}
+            className="download_btn"
+          >
+            Tải về video {link.quality}
+          </a>
+        ))}
+
+      {/* <section>
         <button onClick={handleFetchingData}>Test fetching data</button>
-      </section>
+      </section> */}
     </div>
   );
 }
