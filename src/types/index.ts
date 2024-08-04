@@ -50,3 +50,32 @@ export interface IListVideoReq {
   pageToken?: string;
   part: string;
 }
+
+// ===FACEBOOK===
+export type TFacebookVideoQuality =
+  | 'video_sd_0'
+  | 'video_hd_0'
+  | 'video_render_360p_0'
+  | 'video_render_720p_0'
+  | 'audio_0';
+
+export type TFacebookDownloadLink = {
+  quality: TFacebookVideoQuality;
+  link: string;
+};
+
+export type TFacebookDownload = {
+  success: boolean;
+  message: string | null;
+  src_url: string;
+  og_url: string;
+  title: string;
+  picture: string;
+  links: TFacebookDownloadLink[];
+};
+
+export type TFacebookDownloadLinkWithTitle = TFacebookDownloadLink & {
+  title: TFacebookDownload['title'];
+};
+
+export type FacebookDownloadResponse = AxiosResponse<TFacebookDownload>;

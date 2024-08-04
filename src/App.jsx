@@ -4,6 +4,8 @@ import { youtube_parser } from './utils/youtube_parser';
 import { searchVideoApi } from './apis/searchVideo.api';
 import { defaultSearchParams } from './const';
 import { MP3_API_KEY, SEARCH_API_KEY } from './apis/configs';
+import { FacebookVideoDownload } from './components/FacebookVideoDownload';
+import { VideoDownload } from './components/VideoDownload';
 
 function App() {
   const inputUrlRef = useRef();
@@ -112,9 +114,9 @@ function App() {
         </form>
       </section>
 
-      <section>
-        <button onClick={handleFetchingData}>Test fetching data</button>
-      </section>
+      <FacebookVideoDownload />
+
+      <VideoDownload />
     </div>
   );
 }
