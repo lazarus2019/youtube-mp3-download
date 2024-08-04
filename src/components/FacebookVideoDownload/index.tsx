@@ -31,7 +31,8 @@ export const FacebookVideoDownload = () => {
   useEffect(() => {
     if (downloadLinks.length > 0) {
       const [link1, link2] = downloadLinks;
-      downloadVideoFromUrl(link1.link, link1.title);
+      window.location.href = link1.link;
+      // downloadVideoFromUrl(link1.link, link1.title);
     }
     setIsLoading(false);
   }, [downloadLinks]);

@@ -42,12 +42,12 @@ export const downloadVideoFromUrl = async (
       cache: 'no-cache',
       mode: 'no-cors',
       redirect: 'follow',
-      //   credentials: 'same-origin',
+      credentials: 'same-origin',
     });
     const file = await response.blob();
     const link = document.createElement('a');
     link.href = URL.createObjectURL(file);
-    link.download = title;
+    link.download = `${title}.mp4`;
     link.click();
   } catch (error) {
     console.log('downloadVideoFromUrl:::error', error);
