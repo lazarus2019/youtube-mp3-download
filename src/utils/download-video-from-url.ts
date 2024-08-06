@@ -53,3 +53,19 @@ export const downloadVideoFromUrl = async (
     console.log('downloadVideoFromUrl:::error', error);
   }
 };
+
+export const downloadVideoWithRequest = async (videoLink) => {
+  try {
+    const videoRequest = new Request(videoLink);
+    fetch(videoRequest).then(() => {
+      const link = document.createElement('a');
+      link.href = videoLink;
+      link.setAttribute('download', 'waterfall.mp4');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  } catch (error) {
+    console.log('downloadVideoWithRequest:::error', error);
+  }
+};

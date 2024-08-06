@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import { downloadVideoFromUrl } from '../../utils/download-video-from-url';
+import {
+  downloadVideoFromUrl,
+  downloadVideoWithRequest,
+} from '../../utils/download-video-from-url';
 
 import classes from './video-download.module.scss';
+import useDownloader from 'react-use-downloader';
+import { handleDownload } from '../../hooks/useDownloadMinimal';
 
 export const VideoDownload = () => {
   const [linkVideo, setLinkVideo] = useState('');
+
+  const { download, error } = useDownloader();
 
   return (
     <section className={classes['facebook-download-video']}>
@@ -20,13 +27,16 @@ export const VideoDownload = () => {
         />
         <button
           className={classes['facebook-video-download']}
-          onClick={async () =>
-            await downloadVideoFromUrl(linkVideo, 'video_title')
-          }
+          // onClick={async () =>
+          //   await downloadVideoFromUrl(linkVideo, 'video_title')
+          // }
+          onClick={() => handleDownload(linkVideo, 'video_title.mp4')}
         >
           Download video from url
         </button>
       </div>
+
+      {error && <p>{JSON.stringify(error)}</p>}
     </section>
   );
 };
