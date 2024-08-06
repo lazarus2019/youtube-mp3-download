@@ -5,6 +5,7 @@ import { searchVideoApi } from './apis/searchVideo.api';
 import { defaultSearchParams } from './const';
 import { MP3_API_KEY, SEARCH_API_KEY } from './apis/configs';
 import { FacebookVideoDownload } from './components/FacebookVideoDownload';
+import { VideoDownload } from './components/VideoDownload';
 
 function App() {
   const inputUrlRef = useRef();
@@ -115,7 +116,7 @@ function App() {
 
       <FacebookVideoDownload />
 
-      {/* <VideoDownload /> */}
+      <VideoDownload />
     </div>
   );
 }
