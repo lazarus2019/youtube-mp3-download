@@ -27,10 +27,7 @@ export const VideoDownload = () => {
         />
         <button
           className={classes['facebook-video-download']}
-          // onClick={async () =>
-          //   await downloadVideoFromUrl(linkVideo, 'video_title')
-          // }
-          onClick={() => handleDownload(linkVideo, 'video_title.mp4')}
+          onClick={() => handleDownload(linkVideo, 'video_title')}
         >
           Download video from url
         </button>
