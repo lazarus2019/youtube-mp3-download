@@ -10,7 +10,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   height: 100vh;
   color: white;
-  background: linear-gradient(45deg, #4158D0, #C850C0, #FFCC70);
+  background: linear-gradient(45deg, #4158d0, #c850c0, #ffcc70);
 }
 
 .app {
@@ -67,10 +67,11 @@ body {
   margin-bottom: 1rem;
 }
 
-.form .form_button, .download_btn {
+.form .form_button,
+.download_btn {
   width: 150px;
   height: 50px;
-  background: #4158B0;
+  background: #4158b0;
   border: none;
   outline: none;
   color: white;
@@ -89,7 +90,6 @@ body {
 
 .download_btn {
   background: #0e9d42;
-
 }
 
 .download_quote {
@@ -113,7 +113,9 @@ body {
     width: 100%;
   }
 
-  .reset_button, .download_btn, .form_button {
+  .reset_button,
+  .download_btn,
+  .form_button {
     min-width: 100%;
   }
 
@@ -121,4 +123,8 @@ body {
     font-size: 35px;
     margin-bottom: 16px;
   }
+}
+
+.highlight {
+  background-color: #ffeb3b;
 }

@@ -6,6 +6,11 @@ import { defaultSearchParams } from './const';
 import { MP3_API_KEY, SEARCH_API_KEY } from './apis/configs';
 import { FacebookVideoDownload } from './components/FacebookVideoDownload';
 import { VideoDownload } from './components/VideoDownload';
+// import HighlightTextarea from './components/TextareaHighlight';
+import HighlightTextarea from './components/HighlightTextarea';
+import KeywordHighlighter from './components/Contenteditable';
+// import HighlightForm from './components/HighlightForm';
+import Editor from './components/Tiptap/Editor';
 
 function App() {
   const inputUrlRef = useRef();
@@ -14,6 +19,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const key = import.meta.env.VITE_RAPID_API_KEY;
   console.log({ MP3_API_KEY, SEARCH_API_KEY, key });
+
+  const [text, setText] = useState('');
+  const keywords = ['highlight', 'React', 'JavaScript'];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -117,6 +125,14 @@ function App() {
       <FacebookVideoDownload />
 
       <VideoDownload />
+
+      {/* <HighlightTextarea /> */}
+      {/* <KeywordHighlighter /> */}
+      {/* <HighlightForm /> */}
+
+      <HighlightTextarea value={text} onChange={setText} keywords={keywords} />
+
+      <Editor />
     </div>
   );
 }
