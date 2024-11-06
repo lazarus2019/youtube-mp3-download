@@ -13,7 +13,7 @@ function App() {
   const [videoTitle, setVideoTitle] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const key = import.meta.env.VITE_RAPID_API_KEY;
-  console.log({ MP3_API_KEY, SEARCH_API_KEY, key });
+  // console.log({ MP3_API_KEY, SEARCH_API_KEY, key });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,8 +37,8 @@ function App() {
 
     axios(options)
       .then((res) => {
-        setUrlResult(res.data.link);
-        setVideoTitle(res.data.title);
+        setUrlResult(res.link);
+        setVideoTitle(res.title);
       })
       .catch((err) => {
         alert('Có lỗi xãy ra, xin thử lại');
